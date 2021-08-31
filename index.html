@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Афиша</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+
+    <script src="js/loadEvents.js"></script>
+    <style>
+        :root {
+            --ion-safe-area-top: 0px;
+            --ion-safe-area-bottom: 0px;
+            --ion-color-favorite: #17B890;
+            --ion-color-favorite-contrast: #ffffff;
+            --ion-color-favorite-shade: #17B890;
+            --ion-color-favorite-tint: #17B890;
+
+            --sait: var(--android-safe-area-inset-top);
+            --saib: var(--android-safe-area-inset-bottom);
+            --sail: var(--android-safe-area-inset-left);
+            --sair: var(--android-safe-area-inset-right);
+            /* header and etc */
+            --header-height: 44px;
+            --footer-height: 44px;
+        }
+
+        ion-tab-button {
+            --color: #919191;
+            --color-focused: #17B890;
+            --color-selected: #17B890;
+            --ripple-color: #17B890;
+        }
+
+        ion-card {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            margin: 10px;
+            padding: 10px;
+            min-width: 300px;
+            width: 100%;
+        }
+
+        ion-card-title {
+            --color: #17B890;
+            font-weight: bold;
+        }
+
+        ion-card-subtitle {
+            --color: #B5B5B5;
+            font-size: 14px;
+        }
+
+        .tag {
+            color: #B5B5B5;
+            font-size: 12px;
+        }
+
+        .card-tags {
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
+            border-radius: 6px;
+            margin: 0 16px 0 16px;
+            padding: 0px;
+            min-width: 0;
+            width: auto;
+            display: inline-block;
+        }
+
+        .card-stat {
+            margin: 5px;
+            padding: 5px;
+            min-width: 0;
+            width: auto;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .big-title {
+            --color: #191919;
+            font-size: 36px;
+            font-weight: bold;
+            padding-top: 100px;
+            margin-left: 20px;
+        }
+
+        .stat-title {
+            --color: #000;
+            font-size: 13px;
+            font-weight: bold;
+            vertical-align: middle;
+            margin: auto;
+        }
+
+        .grid-center {
+            padding-left: 16px;
+        }
+
+        .stat {
+            --color: #9B9B9B;
+            margin: auto;
+            padding: 5px 0px 5px 0px;
+            font-size: 14px;
+        }
+        
+        ion-toolbar {
+            --background: white;
+        }
+        
+        ion-slide>img {
+            margin-bottom: 20px;
+        }
+
+        ion-button {
+            --background: #17B890;
+        }
+        
+        .bottom-nav {
+            max-height: 56px;
+        }
+
+        .go {
+            filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.1));
+            --box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.04);
+            --border-radius: 12px 0px;
+            width: 100%;
+        }
+
+        .grid-bottom {
+            margin: 0px -10px -10px -10px;
+            padding: 0px 0px 0px 16px;
+        }
+
+        .grid-bottom > ion-row > ion-col {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .grid-bottom > ion-row > ion-col > ion-button {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+        }
+
+        .arrowDown {
+            height: 100%;
+            margin-left: -30px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <ion-app>
+        <ion-content fullscreen>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-text class="big-title" size="large">Горячее</ion-title>
+                    </ion-col>
+                    <ion-col>
+                        <ion-icon start class="arrowDown" color="#191919" name="chevron-down-outline"></ion-icon>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            
+            <ion-list lines="none">
+                <ion-item>
+                    <ion-card>
+                        <ion-card-header>
+                            <ion-card-title>«Классика рока»</ion-card-title>
+                            <ion-card-subtitle>От “Органный дуэт Artbene”</ion-card-subtitle>
+                            <ion-card-subtitle>Через 3 дня</ion-card-subtitle>
+                        </ion-card-header>
+                    
+                        <ion-card class="card-tags">
+                            <ion-grid>
+                                <ion-row size="auto">
+                                    <ion-col size="auto">
+                                        <ion-text class="tag">Рок</ion-text>
+                                    </ion-col>
+                                    <ion-col size="auto">
+                                        <ion-text class="tag">Концерт</ion-text>
+                                    </ion-col>
+                                    <ion-col size="auto">
+                                        <ion-text class="tag">Рок</ion-text>
+                                    </ion-col>
+                                    <ion-col size="auto">
+                                        <ion-text class="tag">Концерт</ion-text>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-card>
+
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col>
+                                    <ion-card class="card-stat">
+                                        <ion-grid>
+                                            <ion-row>
+                                                <ion-text class="stat-title">Кол-во мест</ion-text>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-text class="stat">118</ion-text>
+                                            </ion-row>
+                                        </ion-grid>
+                                    </ion-card>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-card class="card-stat">
+                                        <ion-grid>
+                                            <ion-row>
+                                                <ion-text class="stat-title">Цена за вход</ion-text>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-text class="stat">700Р</ion-text>
+                                            </ion-row>
+                                        </ion-grid>
+                                    </ion-card>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-card class="card-stat">
+                                        <ion-grid>
+                                            <ion-row>
+                                                <ion-text class="stat-title">Место проведения</ion-text>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-text class="stat">2км от вас</ion-text>
+                                            </ion-row>
+                                        </ion-grid>
+                                    </ion-card>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                        
+                        <ion-grid class="grid-bottom">
+                            <ion-row>
+                                <ion-col>
+                                    <ion-grid>
+                                        <ion-row>
+                                            <ion-col size="auto">
+                                                <ion-icon name="arrow-up"></ion-icon>
+                                            </ion-col>
+                                            <ion-col size="auto">
+                                                <ion-text class="rating">+356</ion-text>
+                                            </ion-col>
+                                            <ion-col size="auto">
+                                                <ion-icon name="arrow-down"></ion-icon>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-grid class="grid-center">
+                                        <ion-row>
+                                            <ion-col size="auto">
+                                                <ion-text class="visitors">263</ion-text>
+                                            </ion-col>
+                                            <ion-col>
+                                                <ion-icon name="people"></ion-icon>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-button class="go">Иду</ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+
+                    </ion-card>
+                </ion-item>
+                <ion-item>
+                    <ion-card>
+                        <ion-card-header>
+                            <ion-card-title>«Классика рока»</ion-card-title>
+                            <ion-card-subtitle>От “Органный дуэт Artbene”</ion-card-subtitle>
+                            <ion-card-subtitle>Через 3 дня</ion-card-subtitle>
+                        </ion-card-header>
+                
+                        <ion-card class="card-tags">
+                            <ion-grid>
+                                <ion-row size="auto">
+                                    <ion-col size="auto">
+                                        <ion-text class="tag">Рок</ion-text>
+                                    </ion-col>
+                                    <ion-col size="auto">
+                                        <ion-text class="tag">Концерт</ion-text>
+                                    </ion-col>
+                                    <ion-col size="auto">
+                                        <ion-text class="tag">Рок</ion-text>
+                                    </ion-col>
+                                    <ion-col size="auto">
+                                        <ion-text class="tag">Концерт</ion-text>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-card>
+                
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col>
+                                    <ion-card class="card-stat">
+                                        <ion-grid>
+                                            <ion-row>
+                                                <ion-text class="stat-title">Кол-во мест</ion-text>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-text class="stat">118</ion-text>
+                                            </ion-row>
+                                        </ion-grid>
+                                    </ion-card>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-card class="card-stat">
+                                        <ion-grid>
+                                            <ion-row>
+                                                <ion-text class="stat-title">Цена за вход</ion-text>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-text class="stat">700Р</ion-text>
+                                            </ion-row>
+                                        </ion-grid>
+                                    </ion-card>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-card class="card-stat">
+                                        <ion-grid>
+                                            <ion-row>
+                                                <ion-text class="stat-title">Место проведения</ion-text>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-text class="stat">2км от вас</ion-text>
+                                            </ion-row>
+                                        </ion-grid>
+                                    </ion-card>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                
+                        <ion-grid class="grid-bottom">
+                            <ion-row>
+                                <ion-col>
+                                    <ion-grid>
+                                        <ion-row>
+                                            <ion-col size="auto">
+                                                <ion-icon name="arrow-up"></ion-icon>
+                                            </ion-col>
+                                            <ion-col size="auto">
+                                                <ion-text class="rating">+356</ion-text>
+                                            </ion-col>
+                                            <ion-col size="auto">
+                                                <ion-icon name="arrow-down"></ion-icon>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-grid class="grid-center">
+                                        <ion-row>
+                                            <ion-col size="auto">
+                                                <ion-text class="visitors">263</ion-text>
+                                            </ion-col>
+                                            <ion-col>
+                                                <ion-icon name="people"></ion-icon>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-button class="go">Иду</ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                
+                    </ion-card>
+                </ion-item>
+                <ion-item>
+                    <ion-card>
+                        <ion-card-header>
+                            <ion-card-title>«Twenty One Pilots»</ion-card-title>
+                            <ion-card-subtitle>От “Органный дуэт Artbene”</ion-card-subtitle>
+                            <ion-card-subtitle>Через 7 дней</ion-card-subtitle>
+                        </ion-card-header>
+                
+                        <ion-card class="card-tags">
+                            <ion-grid>
+                                <ion-row size="auto">
+                                    <ion-col size="auto">
+                                        <ion-text class="tag">Рок</ion-text>
+                                    </ion-col>
+                                    <ion-col size="auto">
+                                        <ion-text class="tag">Концерт</ion-text>
+                                    </ion-col>
+                                    <ion-col size="auto">
+                                        <ion-text class="tag">Рок</ion-text>
+                                    </ion-col>
+                                    <ion-col size="auto">
+                                        <ion-text class="tag">Концерт</ion-text>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-card>
+                
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col>
+                                    <ion-card class="card-stat">
+                                        <ion-grid>
+                                            <ion-row>
+                                                <ion-text class="stat-title">Кол-во мест</ion-text>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-text class="stat">118</ion-text>
+                                            </ion-row>
+                                        </ion-grid>
+                                    </ion-card>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-card class="card-stat">
+                                        <ion-grid>
+                                            <ion-row>
+                                                <ion-text class="stat-title">Цена за вход</ion-text>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-text class="stat">700Р</ion-text>
+                                            </ion-row>
+                                        </ion-grid>
+                                    </ion-card>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-card class="card-stat">
+                                        <ion-grid>
+                                            <ion-row>
+                                                <ion-text class="stat-title">Место проведения</ion-text>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-text class="stat">2км от вас</ion-text>
+                                            </ion-row>
+                                        </ion-grid>
+                                    </ion-card>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                
+                        <ion-grid class="grid-bottom">
+                            <ion-row>
+                                <ion-col>
+                                    <ion-grid>
+                                        <ion-row>
+                                            <ion-col size="auto">
+                                                <ion-icon name="arrow-up"></ion-icon>
+                                            </ion-col>
+                                            <ion-col size="auto">
+                                                <ion-text class="rating">+356</ion-text>
+                                            </ion-col>
+                                            <ion-col size="auto">
+                                                <ion-icon name="arrow-down"></ion-icon>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-grid class="grid-center">
+                                        <ion-row>
+                                            <ion-col size="auto">
+                                                <ion-text class="visitors">263</ion-text>
+                                            </ion-col>
+                                            <ion-col>
+                                                <ion-icon name="people"></ion-icon>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-button class="go">Иду</ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                
+                    </ion-card>
+                </ion-item>
+            </ion-list>
+            </ion-tabs>
+        </ion-content>
+
+        <ion-content class="bottom-nav">
+            <ion-tabs>
+                <ion-tab tab="tab-hot">
+                    <ion-nav></ion-nav>
+                </ion-tab>
+            
+                <ion-tab tab="tab-home">
+                    <ion-nav></ion-nav>
+                </ion-tab>
+            
+                <ion-tab tab="tab-all">
+                    <ion-nav></ion-nav>
+                </ion-tab>
+            
+                <ion-tab-bar slot="bottom">
+                    <ion-tab-button tab="tab-hot">
+                        <ion-icon name="flame"></ion-icon>
+                    </ion-tab-button>
+            
+                    <ion-tab-button tab="tab-home">
+                        <ion-icon name="home"></ion-icon>
+                    </ion-tab-button>
+            
+                    <ion-tab-button tab="tab-all">
+                        <ion-icon name="list"></ion-icon>
+                    </ion-tab-button>
+                </ion-tab-bar>
+            </ion-tabs>
+        </ion-content>
+    </ion-app>
+
+    <script src="moby.js"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</htm

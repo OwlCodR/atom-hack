@@ -1,0 +1,23 @@
+{
+    "App": {
+        "launch": "index.html"
+    },
+    "UI": {
+        "menu": {
+            "index": "",
+            "text": "Boot",
+            "icon": "icon.png"
+        },
+        "sidebar": {
+            "index": "",
+            "text": "",
+            "icon": ""
+        }
+    },
+    "Database": {
+        "post": ""
+    },
+    "Access": {
+        "auth": ""
+    }
+}
