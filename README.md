@@ -15,8 +15,9 @@
 - Figma
 
 ## :scroll: Other repositories
-- [Golang server backend](https://gitlab.com/ikramanop/go-events-atomhack-summer-2021/-/blob/develop/pkg/swagger/swagger.yml)
-- [Website for business](https://gitlab.com/ikramanop/vue-events-ui-atomhack-summer-2021)
+- [Server Backend](https://gitlab.com/ikramanop/go-events-atomhack-summer-2021/-/blob/develop/pkg/swagger/swagger.yml)
+- [CRM Frontend](https://gitlab.com/ikramanop/vue-events-ui-atomhack-summer-2021)
+- [Analytical service (ML)](https://gitlab.com/KirillVitko/python-models-atomhack-summer-2021/)
 
 ## Screenshots of Figma Design
 ![3D Screenshots Mobile](https://i.imgur.com/lQIcTMH.png)
